@@ -171,7 +171,7 @@ public sealed class Execution
 	/// Executed timestamp.
 	/// </summary>
 	[JsonPropertyName("execTime")]
-	[JsonConverter(typeof(DateTimeIntegerMillisecondsConverter))]
+	[JsonConverter(typeof(DateTimeStringMillisecondsConverter))]
 	public DateTime ExecTime { get; set; }
 
 	/// <summary>
@@ -179,7 +179,7 @@ public sealed class Execution
 	/// Classic spot is not supported, always 0.
 	/// </summary>
 	[JsonPropertyName("isLeverage")]
-	[JsonConverter(typeof(BooleanIntegerConverter))]
+	[JsonConverter(typeof(BooleanStringConverter))]
 	public bool IsLeverage { get; set; }
 
 	/// <summary>

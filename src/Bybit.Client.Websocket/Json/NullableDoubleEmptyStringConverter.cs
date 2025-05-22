@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -9,14 +10,9 @@ sealed class NullableDoubleEmptyStringConverter : JsonConverter<double?>
 	public override double? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		var value = reader.GetString();
-		return value == null ? null : double.Parse(value);
+		return string.IsNullOrEmpty(value) ? null : double.Parse(value);
 	}
 
-	public override void Write(Utf8JsonWriter writer, double? value, JsonSerializerOptions options)
-	{
-		if (value == null)
-			writer.WriteStringValue("");
-		else
-			writer.WriteNumberValue(value.Value);
-	}
+	public override void Write(Utf8JsonWriter writer, double? value, JsonSerializerOptions options) =>
+		writer.WriteStringValue(value == null ? string.Empty : value.Value.ToString(CultureInfo.InvariantCulture));
 }

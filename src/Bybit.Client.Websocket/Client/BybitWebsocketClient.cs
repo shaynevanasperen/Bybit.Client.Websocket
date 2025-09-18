@@ -75,7 +75,7 @@ public abstract class BybitWebsocketClient : IBybitWebsocketClient
 		}
 	}
 
-	string LogMessage(string message) => $"[BYBIT {Type} WEBSOCKET CLIENT] {message}";
+	string LogMessage(string message) => $"[{_client.Name ?? "BYBIT " + Type} WEBSOCKET CLIENT] {message}";
 
 	/// <summary>
 	/// Tries to deserialize the message and push it into the stream.
